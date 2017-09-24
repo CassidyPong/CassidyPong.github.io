@@ -10,6 +10,10 @@
 
   p {
    color: #33a8ff;
-   text-align: right;
-   border: 3px dotted #ff008d;
+   text-align: center;
+   border: 0px dotted #ff008d;
+  }
+
+  a {
+color: #69CBBB;
   }
