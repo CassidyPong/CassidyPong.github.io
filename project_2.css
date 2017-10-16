@@ -1,0 +1,34 @@
+
+  body {
+   background-color: white;
+   text-align: center;
+  }
+
+  h1 {
+   color: black;
+   text-align: center;
+   font: italic 200% courier;
+  }
+
+ h2 {
+ padding: 20px;
+ color: black;
+ text-align: center;
+ border: 3px dotted #ff008d;
+}
+
+p {
+	text-align:left;
+	padding-left: 1em;
+	vertical-align:top;
+  font-size:14pt;
+}
+
+table, tr, td {
+	text-align:center;	
+}
+
+
+  a {
+color: #69CBBB;
+  }
