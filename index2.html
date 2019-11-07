@@ -3,20 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>(Cassidy Pong)</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
       <script src="js/paper.js"></script>
       <script src="js/cPong_paperjs_mod.js"></script>
   </head>
   <body>
     
-   <script type="text/paperscript" canvas="cavas-1">
-   var leftPath = new Path({
-    strokeColor: 'blue',
+<script type="text/paperscript" canvas="canvas-1">
+var leftPath = new Path({
+    strokeColor: 'red',
 	opacity: 0.5
 });
 
 var rightPath = new Path({
-	strokeColor: 'coral',
+	strokeColor: 'green',
 	opacity: 0.5
 });
 
@@ -32,7 +31,7 @@ for (var i = 0; i <= amount; i++) {
 var group = new Group({
 	children: [leftPath, rightPath],
 	transformContent: false,
-	strokeWidth: 15,
+	strokeWidth: 30,
 	strokeJoin: 'round',
 	strokeCap: 'butt',
 	pivot: leftPath.position,
@@ -136,6 +135,6 @@ function getEqualizerBands(data) {
 	}
 	return bands;
 }
-    </script>
+</script>
   </body>
 </html>
