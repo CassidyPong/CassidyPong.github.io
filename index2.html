@@ -4,86 +4,120 @@
     <meta charset="utf-8">
     <title>(Cassidy Pong)</title>
      <script type"text/javascript" src="js/paper.js"></script>
-     <script type="text/paperscript" canvas="canvas">
-        var Ball = function(point, vector) {
-            if (!vector || vector.isZero()) {
-                this.vector = Point.random() * 5;
-            } else {
-                this.vector = vector * 2;
-            }
-            this.point = point;
-            this.dampen = 0.4;
-            this.gravity = 3;
-            this.bounce = -0.6;
-            var color = {
-                hue: Math.random() * 360,
-                saturation: 1,
-                brightness: 1
-            };
-            var gradient = new Gradient([color, 'black'], true);
-            var radius = this.radius = 50 * Math.random() + 30;
-            // Wrap CompoundPath in a Group, since CompoundPaths directly
-            // applies the transformations to the content, just like Path.
-            var ball = new CompoundPath({
-                children: [
-                    new Path.Circle({
-                        radius: radius
-                    }),
-                    new Path.Circle({
-                        center: radius / 8,
-                        radius: radius / 3
-                    })
-                ],
-                fillColor: new Color(gradient, 0, radius, radius / 8),
-            });
-            this.item = new Group({
-                children: [ball],
-                applyMatrix: false,
-                position: this.point
-            });
+  <script type="text/paperscript" canvas="canvas">
+    var leftPath = new Path({
+        strokeColor: 'red',
+        opacity: 0.5
+    });
+    var rightPath = new Path({
+        strokeColor: 'green',
+        opacity: 0.5
+    });
+    var amount = 8;
+    var step = view.size.width / (amount + 1);
+    var flip = false;
+    for (var i = 0; i <= amount; i++) {
+        leftPath.add(new Point(i * step, 0));
+        rightPath.add(new Point(i * step, 0));
+    }
+    var group = new Group({
+        children: [leftPath, rightPath],
+        applyMatrix: false,
+        strokeWidth: 30,
+        strokeJoin: 'round',
+        strokeCap: 'butt',
+        pivot: leftPath.position,
+        position: view.center
+    });
+    function onMouseDown() {
+        flip = !flip;
+    }
+    function onKeyDown(event) {
+        if (event.key === 'space')
+            group.fullySelected = !group.fullySelected;
+    }
+    var audio, source, analyserL, analyserR, freqByteData;
+    view.onFrame = function() {
+        var step = view.size.width / (amount + 1);
+        var scale = view.size.height / 1.5;
+        analyserL.getByteFrequencyData(freqByteData);
+        var leftBands = getEqualizerBands(freqByteData, true);
+        analyserR.getByteFrequencyData(freqByteData);
+        var rightBands = getEqualizerBands(freqByteData, true);
+        for (var i = 1; i <= amount; i++) {
+            leftPath.segments[i].point = [i * step, -leftBands[i - 1] * scale];
+            rightPath.segments[i].point = [i * step, -rightBands[i - 1] * scale * (flip ? -1 : 1)];
         }
-        Ball.prototype.iterate = function() {
-            var size = view.size;
-            this.vector.y += this.gravity;
-            this.vector.x *= 0.99;
-            var pre = this.point + this.vector;
-            if (pre.x < this.radius || pre.x > size.width - this.radius)
-                this.vector.x *= -this.dampen;
-            if (pre.y < this.radius || pre.y > size.height - this.radius) {
-                if (Math.abs(this.vector.x) < 3)
-                    this.vector = Point.random() * [150, 100] + [-75, 20];
-                this.vector.y *= this.bounce;
-            }
-            var max = Point.max(this.radius, this.point + this.vector);
-            this.item.position = this.point = Point.min(max, size - this.radius);
-            this.item.rotate(this.vector.x);
+        leftPath.smooth();
+        rightPath.smooth();
+        group.pivot = [leftPath.position.x, 0];
+        group.position = view.center;
+    }
+    // Pause animation until we have data
+    view.pause();
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+        audio = new AudioContext();
+        source = audio.createBufferSource();
+        // Create two separate analyzers for left and right channel.
+        analyserL = audio.createAnalyser();
+        analyserL.smoothingTimeConstant = 0.25;
+        analyserL.fftSize = Math.pow(2, amount) * 2;
+        analyserR = audio.createAnalyser();
+        analyserR.smoothingTimeConstant = analyserL.smoothingTimeConstant;
+        analyserR.fftSize = analyserL.fftSize;
+        // Create the buffer to receive the analyzed data.
+        freqByteData = new Uint8Array(analyserL.frequencyBinCount);
+        // Create a splitter to feed them both
+        var splitter = audio.createChannelSplitter();
+        // Connect audio processing graph
+        source.connect(splitter);
+        splitter.connect(analyserL, 0, 0);
+        splitter.connect(analyserR, 1, 0);
+        // Connect source to output also so we can hear it
+        source.connect(audio.destination);
+        loadAudioBuffer('http://assets.paperjs.org/audio/gnossienne.mp3');
+    } else {
+        // TODO: Print error message
+        alert('Audio not supported');
+    }
+    function loadAudioBuffer(url) {
+        // Load asynchronously
+        var request = new XMLHttpRequest();
+        request.open("GET", url, true);
+        request.responseType = "arraybuffer";
+        request.onload = function() {
+            audio.decodeAudioData(
+                request.response,
+                function(buffer) {
+                    source.buffer = buffer;
+                    source.loop = true;
+                    source.start(0);
+                    view.play();
+                },
+                function(buffer) {
+                    alert("Error loading MP3");
+                }
+            );
         };
-        var balls = [];
-        for (var i = 0; i < 10; i++) {
-            var position = Point.random() * view.size,
-                vector = (Point.random() - [0.5, 0]) * [50, 100],
-                ball = new Ball(position, vector);
-            balls.push(ball);
+        request.send();
+    }
+    function getEqualizerBands(data) {
+        var bands = [];
+        var amount = Math.sqrt(data.length) / 2;
+        for (var i = 0; i < amount; i++) {
+            var start = Math.pow(2, i) - 1;
+            var end = start * 2 + 1;
+            var sum = 0;
+            for (var j = start; j < end; j++) {
+                sum += data[j];
+            }
+            var avg = sum / (255 * (end - start));
+            bands[i] = Math.sqrt(avg / Math.SQRT2);
         }
-        var textItem = new PointText({
-            point: [20, 30],
-            fillColor: 'black',
-            content: 'Click, drag and release to add balls.'
-        });
-        var lastDelta;
-        function onMouseDrag(event) {
-            lastDelta = event.delta;
-        }
-        function onMouseUp(event) {
-            var ball = new Ball(event.point, lastDelta);
-            balls.push(ball);
-            lastDelta = null;
-        }
-        function onFrame() {
-            for (var i = 0, l = balls.length; i < l; i++)
-                balls[i].iterate();
-        }
-    </script>
+        return bands;
+    }
+</script>
 </head>
 <body>
     <canvas id="canvas" resize></canvas>
