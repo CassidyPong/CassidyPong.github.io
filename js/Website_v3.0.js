@@ -31,7 +31,7 @@ function setup() {
   //BUBBLES  
   //load sound -> formats mp3 and ogg
   soundFormats('mp3', 'ogg');
-  bubblepop = loadSound('pop.mp3');
+  bubblepop = loadSound('images/pop.mp3');
   //call resetSketch
   resetSketch();
   
