@@ -70,7 +70,7 @@ function setup() {
 
   //for i = 0 is TRUE -> if i is less than 300 is TRUE -> increment i by one
   //determine number of particles
-  for (var i = 0; i < 500; i++) {
+  for (var i = 0; i < 300; i++) {
     //create particles
     particles[i] = new Particle();
   }
