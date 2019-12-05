@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bubblegum+Sans|Coiny|Fredoka+One|Quicksand|Sulphur+Point&display=swap');
+
 /* Scale canvas with resize attribute to full size */
 canvas[resize] {
     width: 100%;
@@ -5,8 +7,6 @@ canvas[resize] {
 }
 
 /* Code sourced from Paolo Duzioni: https://codepen.io/Paolo-Duzioni/pen/MQmbJo */
-
-@import url('https://fonts.googleapis.com/css?family=Bubblegum+Sans|Coiny|Fredoka+One|Quicksand|Sulphur+Point&display=swap');
 
 /*** <--- CONTAINER ---> ***/
 html, body {
