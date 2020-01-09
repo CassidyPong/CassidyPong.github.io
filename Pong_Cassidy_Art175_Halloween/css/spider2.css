@@ -1,0 +1,394 @@
+/** Halloween Animation in Pure CSS by Rachel Bull: https://codepen.io/rachel_web/pen/rrRQYW **/
+
+/* Defines all spiders */
+[class*="spider2"] {
+  position: absolute;
+  height: 40px;
+  width: 50px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin: 40px 0 0 0;
+  background: #110D04;
+}
+
+/* Addresses all spiders */
+[class*="spider2"] *, [class*="spider2"]:before, [class*="spider2"]:after, [class*="spider2"] :after, [class*="spider2"] :before {
+  position: absolute;
+  content: "";
+}
+[class*="spider2"]:before {
+  width: 1px;
+  background: #AAAAAA;
+  left: 50%;
+  top: -320px;
+  height: 320px;
+}
+
+
+
+/* Defines attributes of the eyes */
+[class*="spider2"] .eye {
+  top: 16px;
+  height: 14px;
+  width: 12px;
+  background: #FFFFFF;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+[class*="spider2"] .eye:after {
+  top: 6px;
+  height: 5px;
+  width: 5px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: black;
+}
+
+
+
+/* Defines positions of the left and right eyes */
+[class*="spider2"] .eye.left {
+  left: 14px;
+}
+[class*="spider2"] .eye.left:after {
+  right: 3px;
+}
+[class*="spider2"] .eye.right {
+  right: 14px;
+}
+[class*="spider2"] .eye.right:after {
+  left: 3px;
+}
+
+
+/* Defines attributes of the legs */
+[class*="spider2"] .leg {
+  top: 6px;
+  height: 12px;
+  width: 14px;
+  border-top: 2px solid #110D04;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+
+}
+
+
+
+/* Defines positions & animations of the left and right legs --> all eight */
+[class*="spider2"] .leg.left {
+  left: -8px;
+  -moz-transform-origin: top right;
+  -ms-transform-origin: top right;
+  -webkit-transform-origin: top right;
+  transform-origin: top right;
+  -moz-transform: rotate(36deg) skewX(-20deg);
+  -ms-transform: rotate(36deg) skewX(-20deg);
+  -webkit-transform: rotate(36deg) skewX(-20deg);
+  transform: rotate(36deg) skewX(-20deg);
+  border-left: 2px solid #110D04;
+  -moz-border-radius: 60% 0 0 0;
+  -webkit-border-radius: 60%;
+  border-radius: 60% 0 0 0;
+  -moz-animation: legs-wriggle-left 1s 0s infinite;
+  -webkit-animation: legs-wriggle-left 1s 0s infinite;
+  animation: legs-wriggle-left 1s 0s infinite;
+}
+[class*="spider2"] .leg.right {
+  right: -8px;
+  -moz-transform-origin: top left;
+  -ms-transform-origin: top left;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -moz-transform: rotate(-36deg) skewX(20deg);
+  -ms-transform: rotate(-36deg) skewX(20deg);
+  -webkit-transform: rotate(-36deg) skewX(20deg);
+  transform: rotate(-36deg) skewX(20deg);
+  border-right: 2px solid #110D04;
+  -moz-border-radius: 0 60% 0 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 60% 0 0;
+  -moz-animation: legs-wriggle-right 1s 0.2s infinite;
+  -webkit-animation: legs-wriggle-right 1s 0.2s infinite;
+  animation: legs-wriggle-right 1s 0.2s infinite;
+}
+[class*="spider2"] .leg:nth-of-type(2) {
+  top: 14px;
+  left: -11px;
+  -moz-animation: legs-wriggle-left 1s 0.8s infinite;
+  -webkit-animation: legs-wriggle-left 1s 0.8s infinite;
+  animation: legs-wriggle-left 1s 0.8s infinite;
+}
+[class*="spider2"] .leg:nth-of-type(3) {
+  top: 22px;
+  left: -12px;
+  -moz-animation: legs-wriggle-left 1s 0.2s infinite;
+  -webkit-animation: legs-wriggle-left 1s 0.2s infinite;
+  animation: legs-wriggle-left 1s 0.2s infinite;
+}
+[class*="spider2"] .leg:nth-of-type(4) {
+  top: 31px;
+  left: -10px;
+  -moz-animation: legs-wriggle-left 1s 0.4s infinite;
+  -webkit-animation: legs-wriggle-left 1s 0.4s infinite;
+  animation: legs-wriggle-left 1s 0.4s infinite;
+}
+[class*="spider2"] .leg:nth-of-type(6) {
+  top: 14px;
+  right: -11px;
+  -moz-animation: legs-wriggle-right 1s 0.4s infinite;
+  -webkit-animation: legs-wriggle-right 1s 0.4s infinite;
+  animation: legs-wriggle-right 1s 0.4s infinite;
+}
+[class*="spider2"] .leg:nth-of-type(7) {
+  top: 22px;
+  right: -12px;
+  -moz-animation: legs-wriggle-right 1s 0.7s infinite;
+  -webkit-animation: legs-wriggle-right 1s 0.7s infinite;
+  animation: legs-wriggle-right 1s 0.7s infinite;
+}
+[class*="spider2"] .leg:nth-of-type(8) {
+  top: 31px;
+  right: -10px;
+  -moz-animation: legs-wriggle-right 1s 0.3s infinite;
+  -webkit-animation: legs-wriggle-right 1s 0.3s infinite;
+  animation: legs-wriggle-right 1s 0.3s infinite;
+}
+
+
+
+
+/* Defines the animation of each spider */
+/* First spider */
+.spider2_0 {
+  left: 5%;
+  -moz-animation: spider2-move-0 5s infinite;
+  -webkit-animation: spider2-move-0 5s infinite;
+  animation: spider2-move-0 5s infinite;
+}
+/* Second spider */
+.spider2_1 {
+  left: 20%;
+  -moz-animation: spider2-move-1 5s infinite;
+  -webkit-animation: spider2-move-1 5s infinite;
+  animation: spider2-move-1 5s infinite;
+}
+/* Fifth spider */
+.spider2_4 {
+  right: 20%;
+  margin-top: 50px;
+  -moz-animation: spider2-move-4 5s infinite;
+  -webkit-animation: spider2-move-4 5s infinite;
+  animation: spider2-move-4 5s infinite;
+}
+/* Sixth spider */
+.spider2_5 {
+  right: 5%;
+  margin-top: 210px;
+  -moz-animation: spider2-move-5 5s infinite;
+  -webkit-animation: spider2-move-5 5s infinite;
+  animation: spider2-move-5 5s infinite;
+}
+
+
+
+/* Defines the leg wriggle animation for the left and right legs */
+@-moz-keyframes legs-wriggle-left {
+  0%, 100% {
+    -moz-transform: rotate(36deg) skewX(-20deg);
+    transform: rotate(36deg) skewX(-20deg);
+  }
+  25%, 75% {
+    -moz-transform: rotate(15deg) skewX(-20deg);
+    transform: rotate(15deg) skewX(-20deg);
+  }
+  50% {
+    -moz-transform: rotate(45deg) skewX(-20deg);
+    transform: rotate(45deg) skewX(-20deg);
+  }
+}
+@-webkit-keyframes legs-wriggle-left {
+  0%, 100% {
+    -webkit-transform: rotate(36deg) skewX(-20deg);
+    transform: rotate(36deg) skewX(-20deg);
+  }
+  25%, 75% {
+    -webkit-transform: rotate(15deg) skewX(-20deg);
+    transform: rotate(15deg) skewX(-20deg);
+  }
+  50% {
+    -webkit-transform: rotate(45deg) skewX(-20deg);
+    transform: rotate(45deg) skewX(-20deg);
+  }
+}
+@keyframes legs-wriggle-left {
+  0%, 100% {
+    -moz-transform: rotate(36deg) skewX(-20deg);
+    -ms-transform: rotate(36deg) skewX(-20deg);
+    -webkit-transform: rotate(36deg) skewX(-20deg);
+    transform: rotate(36deg) skewX(-20deg);
+  }
+  25%, 75% {
+    -moz-transform: rotate(15deg) skewX(-20deg);
+    -ms-transform: rotate(15deg) skewX(-20deg);
+    -webkit-transform: rotate(15deg) skewX(-20deg);
+    transform: rotate(15deg) skewX(-20deg);
+  }
+  50% {
+    -moz-transform: rotate(45deg) skewX(-20deg);
+    -ms-transform: rotate(45deg) skewX(-20deg);
+    -webkit-transform: rotate(45deg) skewX(-20deg);
+    transform: rotate(45deg) skewX(-20deg);
+  }
+}
+@-moz-keyframes legs-wriggle-right {
+  0%, 100% {
+    -moz-transform: rotate(-36deg) skewX(20deg);
+    transform: rotate(-36deg) skewX(20deg);
+  }
+  25%, 75% {
+    -moz-transform: rotate(-15deg) skewX(20deg);
+    transform: rotate(-15deg) skewX(20deg);
+  }
+  50% {
+    -moz-transform: rotate(-45deg) skewX(20deg);
+    transform: rotate(-45deg) skewX(20deg);
+  }
+}
+@-webkit-keyframes legs-wriggle-right {
+  0%, 100% {
+    -webkit-transform: rotate(-36deg) skewX(20deg);
+    transform: rotate(-36deg) skewX(20deg);
+  }
+  25%, 75% {
+    -webkit-transform: rotate(-15deg) skewX(20deg);
+    transform: rotate(-15deg) skewX(20deg);
+  }
+  50% {
+    -webkit-transform: rotate(-45deg) skewX(20deg);
+    transform: rotate(-45deg) skewX(20deg);
+  }
+}
+@keyframes legs-wriggle-right {
+  0%, 100% {
+    -moz-transform: rotate(-36deg) skewX(20deg);
+    -ms-transform: rotate(-36deg) skewX(20deg);
+    -webkit-transform: rotate(-36deg) skewX(20deg);
+    transform: rotate(-36deg) skewX(20deg);
+  }
+  25%, 75% {
+    -moz-transform: rotate(-15deg) skewX(20deg);
+    -ms-transform: rotate(-15deg) skewX(20deg);
+    -webkit-transform: rotate(-15deg) skewX(20deg);
+    transform: rotate(-15deg) skewX(20deg);
+  }
+  50% {
+    -moz-transform: rotate(-45deg) skewX(20deg);
+    -ms-transform: rotate(-45deg) skewX(20deg);
+    -webkit-transform: rotate(-45deg) skewX(20deg);
+    transform: rotate(-45deg) skewX(20deg);
+  }
+}
+
+
+
+/* Defines the positions of the spiders when the move up and down */
+@-moz-keyframes spider2-move-0 {
+  0%, 100% {
+    margin-top: 112px;
+  }
+  55% {
+    margin-top: calc(112px + 108px);
+  }
+}
+@-webkit-keyframes spider2-move-0 {
+  0%, 100% {
+    margin-top: 112px;
+  }
+  55% {
+    margin-top: calc(112px + 108px);
+  }
+}
+@keyframes spider2-move-0 {
+  0%, 100% {
+    margin-top: 112px;
+  }
+  55% {
+    margin-top: calc(112px + 108px);
+  }
+}
+@-moz-keyframes spider2-move-1 {
+  0%, 100% {
+    margin-top: 202px;
+  }
+  43% {
+    margin-top: calc(202px + 59px);
+  }
+}
+@-webkit-keyframes spider2-move-1 {
+  0%, 100% {
+    margin-top: 202px;
+  }
+  43% {
+    margin-top: calc(202px + 59px);
+  }
+}
+@keyframes spider2-move-1 {
+  0%, 100% {
+    margin-top: 202px;
+  }
+  43% {
+    margin-top: calc(202px + 59px);
+  }
+}
+@-moz-keyframes spider2-move-4 {
+  0%, 100% {
+    margin-top: 76px;
+  }
+  62% {
+    margin-top: calc(76px + 61px);
+  }
+}
+@-webkit-keyframes spider2-move-4 {
+  0%, 100% {
+    margin-top: 76px;
+  }
+  62% {
+    margin-top: calc(76px + 61px);
+  }
+}
+@keyframes spider2-move-4 {
+  0%, 100% {
+    margin-top: 76px;
+  }
+  62% {
+    margin-top: calc(76px + 61px);
+  }
+}
+@-moz-keyframes spider2-move-5 {
+  0%, 100% {
+    margin-top: 118px;
+  }
+  55% {
+    margin-top: calc(118px + 40px);
+  }
+}
+@-webkit-keyframes spider2-move-5 {
+  0%, 100% {
+    margin-top: 118px;
+  }
+  55% {
+    margin-top: calc(118px + 40px);
+  }
+}
+@keyframes spider2-move-5 {
+  0%, 100% {
+    margin-top: 118px;
+  }
+  55% {
+    margin-top: calc(118px + 40px);
+  }
+}

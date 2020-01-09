@@ -1,0 +1,47 @@
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  padding-bottom: 5em;
+}
+
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+   padding-bottom: 3em;
+}
+
+ a{
+ 	font-size: 35px;
+    font-family: 'Barriecito', cursive;
+    padding-left: 3em;
+    padding-right: 3em;
+ }
+
+ /* unvisited link */
+a:link {
+  color: #e67e00;
+}
+
+/* visited link */
+a:visited {
+  color: #ccaa00;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: #4d004d;
+}
+ 

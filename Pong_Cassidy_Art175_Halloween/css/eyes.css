@@ -1,0 +1,242 @@
+/**CSS eyes created by Loktar: https://codepen.io/loktar00/pen/FmkAd**/
+
+body{background:#000; margin:0;}
+
+/*Defines the total width and height the code is contained in*/
+#hitarea{
+  position:absolute; 
+  left:50%;
+  margin-left:-250px;
+  width:500px;
+  height:500px;
+  transform: scale(2);
+  margin-top: 1em;
+}
+
+/*Divides the hitarea into a grid*/
+.hitbox{
+    width:100px;
+    height:100px;
+    float:left;    
+}
+
+/* Creates the eyes */
+.eye{
+  position:absolute;
+  width:100px;
+  height:100px;
+  background: #fff;
+  border-radius:50px;
+  left:25%;
+  top: 40%; 
+  /* Pointer-events --> defines whether or not an element can respond to a mouse*/ 
+  pointer-events: none;    
+}
+
+/* The "right eye" */
+.eye+.eye{
+    left: 55%; 
+}
+
+/* Creates the pupils */
+.pupil{
+  position:relative;
+  width:25px;
+  height:25px;
+  background:#000;
+  border-radius:12px;
+  left:50%;
+  top:50%;
+  margin:-12px 0 0 -12px;
+  /* Creates smoother animation --> half second */
+  -webkit-transition: all .5s ease;
+}
+
+/* Creates the eyelids */
+.eyelid{
+    width:150px;
+    height: 100px;
+    position:absolute;
+    left:20%;
+    top: 25%;  
+    pointer-events: none;
+    background: #000;
+    -webkit-animation-name:             blink; 
+    /* Blink every 4.5s --> .5 ease increases timing to 9s */
+    -webkit-animation-duration:         4.5s; 
+    /* Constantly loop */
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function:  linear;
+    -webkit-animation-direction:        alternate;
+    -webkit-animation-delay: 1s; 
+    /* Creates smoother animation --> half second */
+    -webkit-transition: all .5s ease;
+    
+}
+
+/* The "right eyelid" */
+.eyelid+.eyelid{
+    left: 50%; 
+}
+
+/* Defines the frames of the blinks */
+@-webkit-keyframes blink{
+  0%{
+    top:25%;
+  }
+ 95%{
+    top:25%;
+  }
+  100%{ 
+    top:40%;
+  }
+}
+
+/* Hover Events */
+
+/* Defines the eye lid positioning & rotation */
+.hitbox:hover ~ .eyelid{
+    -webkit-transform: rotate(-10deg);
+}
+
+/* nth-of-type(2n+1) --> https://css-tricks.com/how-nth-child-works/ 
+        --> essentially means every 2 elements: 
+                    (2 x 0) + 1 = 1
+                    (2 x 1) + 1 = 3
+                    (2 x 2) + 1 = 5 */
+.hitbox:hover ~ .eyelid:nth-of-type(2n+1){
+    -webkit-transform: rotate(10deg);
+}
+#c-3:hover ~ .eyelid{
+    -webkit-transform: rotate(15deg);
+}
+#c-3:hover ~ .eyelid:nth-of-type(2n+1) {
+    -webkit-transform: rotate(-15deg);
+}
+
+/* Defines the movement of the pupils based on the which hitbox your mouse lies in */
+#a-1:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(60deg) translate(-30px);
+}
+
+#a-2:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(80deg) translate(-30px);
+}
+
+#a-3:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(90deg) translate(-30px);
+}
+
+#a-4:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(100deg) translate(-30px);
+}
+
+#a-5:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(120deg) translate(-30px);
+}
+
+#b-1:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(50deg) translate(-25px);
+}
+
+#b-2:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(70deg) translate(-25px);
+}
+
+#b-3:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(100deg) translate(-25px);
+}
+
+#b-3:hover ~ .eye:nth-of-type(2n+1) > .pupil {
+    -webkit-transform: rotate(80deg) translate(-25px);
+}
+
+#b-4:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(110deg) translate(-25px);
+}
+
+#b-5:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(130deg) translate(-25px);
+}
+
+#c-1:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(0deg) translate(-25px);
+}
+
+#c-2:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(0deg) translate(-10px);
+}
+
+/* Pupils become red when they hover over #c-3 */
+#c-3:hover ~ .eye > .pupil{
+    background: red;
+    -webkit-transform: rotate(180deg) translate(-25px);
+}
+
+#c-3:hover ~ .eye:nth-of-type(2n+1) > .pupil {
+    -webkit-transform: rotate(0deg) translate(-25px);
+}
+
+#c-4:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(180deg) translate(-10px);
+}
+
+#c-5:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(180deg) translate(-25px);
+}
+
+#d-1:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-40deg) translate(-25px);
+}
+
+#d-2:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-60deg) translate(-25px);
+}
+
+#d-3:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-120deg) translate(-25px);
+}
+
+#d-3:hover ~ .eye:nth-of-type(2n+1) > .pupil {
+    -webkit-transform: rotate(-60deg) translate(-25px);
+}
+
+#d-4:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-130deg) translate(-25px);
+}
+
+#d-4:hover ~ .eye:nth-of-type(2n+1) > .pupil{
+    -webkit-transform: rotate(-100deg) translate(-25px);
+}
+
+#d-5:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-140deg) translate(-25px);
+}
+
+#e-1:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-40deg) translate(-30px);
+}
+
+#e-2:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-60deg) translate(-30px);
+}
+
+#e-3:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-120deg) translate(-30px);
+}
+
+#e-3:hover ~ .eye:nth-of-type(2n+1) > .pupil {
+    -webkit-transform: rotate(-60deg) translate(-30px);
+}
+
+#e-4:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-130deg) translate(-30px);
+}
+
+#e-4:hover ~ .eye:nth-of-type(2n+1) > .pupil{
+    -webkit-transform: rotate(-100deg) translate(-30px);
+}
+
+#e-5:hover ~ .eye > .pupil{
+    -webkit-transform: rotate(-140deg) translate(-30px);
+}

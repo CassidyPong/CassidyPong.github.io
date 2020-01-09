@@ -1,0 +1,13 @@
+body{
+	margin:0 auto;
+}
+
+
+h1{
+  font-family: 'Barriecito', cursive;
+  font-weight:300;
+  font-size:40pt;
+  top:50;
+  color: red;
+  text-align:center;
+}

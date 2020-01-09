@@ -1,0 +1,212 @@
+/** Happy halloween by Ivan:https://codepen.io/ivandaum/pen/zvaaKZ **/
+
+
+body {
+  background: #554C5F;
+  padding-top: 10em;
+}
+
+@font-face {
+  font-family: 'Indie Flower';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Indie Flower'), local('IndieFlower'), url(https://fonts.gstatic.com/s/indieflower/v11/m8JVjfNVeKWVnh3QMuKkFcZVaUuC.ttf) format('truetype');
+}
+
+/* Defines the text that shows up in the text bubble */
+.boow {
+  background: #DC7C6C;
+  font-family: 'Indie Flower', cursive;
+  pointer-events: none;
+  font-weight: bold;
+  height: 150px;
+  width: 150px;
+  line-height: 65px;
+  border-radius: 50%;
+  color: #f7f7f7;
+  font-size: 25px;
+  position: absolute;
+  left: 140px;
+  right: 0;
+  opacity: 0;
+  margin: auto;
+  top: -75px;
+  z-index: 90;
+  transition: all ease-in-out 100ms;
+}
+
+/* Creates the text bubble */
+.boow:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 30px 0 0;
+  border-color: #DC7C6C transparent transparent transparent;
+  display: block;
+  position: absolute;
+  left: 25px;
+  bottom: -15px;
+  -webkit-transform: rotate(35deg);
+          transform: rotate(35deg);
+}
+
+
+
+/* Defines the entire ghost */
+#ghost {
+  -webkit-animation: ghostFloat 4000ms infinite;
+          animation: ghostFloat 4000ms infinite;
+  height: 100px;
+  padding-top: 50px;
+  width: 150px;
+  margin: auto;
+  margin-top: 150px;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  border-top-right-radius: 75px;
+  border-top-left-radius: 75px;
+  background: #f7f7f7;
+}
+
+/* Defines the ghost's mouth */
+#ghost .mouth {
+  background: #554C5F;
+  transition: all ease-in-out 100ms;
+  display: block;
+  width: 75px;
+  height: 10px;
+  margin: 20px auto;
+  position: relative;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  border-radius: 50%;
+}
+#ghost .mouth:before {
+  position: absolute;
+  height: 10px;
+  width: 75px;
+  bottom: 3px;
+  display: block;
+  content: "";
+  margin: auto;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  background: #f7f7f7;
+  transition: all ease-in-out 100ms;
+}
+
+
+
+
+/* Define's the ghost's eyes */
+#ghost .eyes {
+  position: relative;
+  display: inline;
+  padding: 0px 15px;
+  padding-bottom: 0;
+  background: #554C5F;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  margin: 0 10px;
+  z-index: 50;
+}
+#ghost .eyes:before {
+  content: "";
+  background: #f7f7f7;
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 30px;
+  width: 24px;
+  bottom: -17.5px;
+  border-radius: 12.5px;
+}
+
+
+
+
+/* Creates the "legs" or bottom of the ghost */
+#ghost ul {
+  height: 35px;
+  width: 100%;
+  position: absolute;
+  bottom: -25px;
+  display: block;
+  margin: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  list-style-type: none;
+  padding: 0;
+}
+#ghost ul li {
+  background: #f7f7f7;
+  width: 25%;
+  height: 100%;
+  float: left;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+}
+
+
+/* Defines the movement of the mouth when mouse hovers over ghost */
+#ghost:hover .mouth {
+  width: 20px;
+  height: 20px;
+}
+#ghost:hover .mouth:before {
+  border-radius: 0;
+  bottom: 15px;
+}
+
+
+
+/* Defines the opacity of the text when you hover over the ghost */
+#ghost:hover .boow {
+  opacity: 1;
+}
+
+
+/* Defines the position of the ghost as it floats */
+@-webkit-keyframes ghostFloat {
+  0% {
+    margin-top: 135px;
+  }
+  50% {
+    margin-top: 160px;
+  }
+  100% {
+    margin-top: 135px;
+  }
+}
+@keyframes ghostFloat {
+  0% {
+    margin-top: 135px;
+  }
+  50% {
+    margin-top: 160px;
+  }
+  100% {
+    margin-top: 135px;
+  }
+}
+
+
+
+/* Defines link attributes */
+.home {
+  padding-left: 47%;
+  padding-top: 5em;
+  font-size: 40px;
+  font-family: 'Barriecito', cursive;
+}
+
+a{
+  color:#e67e00;
+}

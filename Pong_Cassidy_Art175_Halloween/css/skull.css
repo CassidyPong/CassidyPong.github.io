@@ -1,0 +1,23 @@
+
+body{
+  background-image: url(https://media.giphy.com/media/YkndD2nEKOvJRtr3eH/source.gif);
+}
+
+.flexbox{
+  display: flex ;
+      /*create a flex box rather than block, inline, grid*/
+  flex-wrap: wrap;
+      /*determine wrapping method*/
+  justify-content: space-between;
+      /*justify content in the flexbox - try using "space-b3tween"*/
+  padding-top: 4em;
+}
+
+img{
+  margin: 10px;
+  transition: all 0.5s;
+}
+
+img:hover{
+  transform: scale(1.1);
+}
